@@ -19,6 +19,12 @@
             <span class="form-message">{{emailMessage}}</span>
         </div>
 
+        <div class="form-group" :class="{invalid : phoneForm}">
+            <label for="phone_number" class="form-label">Số điện thoại</label>
+            <input id="phone_number" name="phone_number" type="text" placeholder="+84-382-309-649" class="form-control" @blur="isPhone()" @input="phoneForcus()">
+            <span class="form-message">{{phoneMessage}}</span>
+        </div>
+
         <div class="form-group" :class="{invalid : passwordForm}">
             <label for="password" class="form-label">Mật khẩu</label>
             <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control" @blur="isPass()" @input="passwordForcus()">
@@ -50,11 +56,15 @@ export default {
              emailForm: false,
              passwordForm:false,
              confirmForm: false,
+             phoneForm: false,
+             phoneMessage:'',
              confirmMessage:'',
              nameMessage: '',
              emailMessage:'',
              passwordMessage:'',
-             regex: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/             
+             regex: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+             phone_regex: /[+]+(84)+[-]([0-9]{3})+[-]([0-9]{3})+[-]([0-9]{3})\b/g
+     
         }
        
     },
@@ -65,7 +75,17 @@ export default {
           this.isPass();
           this.isConfirm();
           this.getData();
+          this.isPhone();
             return;
+        },
+        isPhone: function(){
+            if(this.phone_regex.test(document.querySelector('#phone_number').value)===false){
+                this.phoneForm=true;
+                this.phoneMessage='số điện thoại không đúng định dang';
+            } else {
+                this.phoneForm=false;
+                this.phoneMessage='';
+            }
         },
         getData: function () {
             var data = document.querySelectorAll('#form-1 input[name]');
@@ -132,6 +152,10 @@ export default {
         confirmForcus: function (){
             this.confirmForm = false;
             this.confirmMessage='';
+        },
+         phoneForcus: function (){
+            this.phoneForm = false;
+            this.phoneMessage='';
         }
         
     }
