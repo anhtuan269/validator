@@ -1,26 +1,33 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">   
+    <Validator />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Validator from './components/Validator.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Validator,
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+a {
+  text-decoration:none;
+  transition:all 0.2s linear;
 }
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    }
+    html {
+    color: #333;
+    font-size: 62.5%;
+    font-family: "Open Sans", sans-serif;
+    }
 </style>
