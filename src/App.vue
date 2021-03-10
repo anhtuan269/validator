@@ -1,16 +1,19 @@
 <template>
   <div id="app">   
     <Validator />
+    <User />
   </div>
 </template>
 
 <script>
 import Validator from './components/Validator.vue'
+import User  from './components/User.vue'
 
 export default {
   name: 'App',
   components: {
     Validator,
+    User
   }
 }
 </script>
